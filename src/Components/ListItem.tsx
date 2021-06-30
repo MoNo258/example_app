@@ -12,6 +12,7 @@ export const ItemStyled = styled.div`
   margin: 0.5rem 0;
   border-radius: 5px;
   background: #fff;
+  cursor: pointer;
   & .item-fullName {
     width: 200px;
   }
@@ -33,6 +34,7 @@ export type ListItemProps = {
   fullName: string;
   id: string;
   type: HeroType;
+  showHero: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 };
 
 const ListItem: React.FC<ListItemProps> = ({
@@ -40,11 +42,12 @@ const ListItem: React.FC<ListItemProps> = ({
   description,
   fullName,
   id,
-  type
+  type,
+  showHero
 }) => {
   return (
     <React.Fragment>
-      <List.Item>
+      <List.Item onClick={showHero} value={id}>
         <ItemStyled>
           <Image className="item-avatar" src={avatarUrl} size="mini" />
           <Header className="item-fullName" as="h3">

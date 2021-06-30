@@ -15,14 +15,13 @@ import HeroView from "./Views/HeroView/HeroView";
 // import { createBrowserHistory } from "history";
 // import { Router, Route, Switch, Redirect } from "react-router-dom";
 import Home from "./Views/Home/Home";
+import NotFound from "./Views/NotFound/NotFound";
 
 const GlobalStyle = createGlobalStyle`
   body {
     background: #F5F6FB;
-    box-sizing:border-box;
-    margin:2rem;
-
-  }
+    box-sizing: border-box;
+   }
 `;
 
 const App = () => {
@@ -34,6 +33,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/:id" component={HeroView} />
+            <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>
