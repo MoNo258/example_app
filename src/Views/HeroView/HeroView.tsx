@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 import { Breadcrumb, ButtonProps, Card, Image } from "semantic-ui-react";
 import styled from "styled-components";
 import { deleteSingleHero, getSingleHero } from "../../Api";
@@ -30,6 +31,7 @@ export const HeroViewStyled = styled.div`
 `;
 
 const HeroView: React.FC = () => {
+  const history = useHistory();
   const [loading, setLoading] = React.useState(true);
   const [heroInfo, setHeroInfo] = React.useState<HeroModel>({
     avatar_url: "",
@@ -40,6 +42,13 @@ const HeroView: React.FC = () => {
   });
   const idParam = window.location.pathname;
   const [isDeleted, setIsDeleted] = React.useState(false);
+
+  const visitHomepage = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    data: ButtonProps
+  ) => {
+    history.push(`/`);
+  };
 
   const sections = [
     { key: "Homepage", content: "Homepage", href: "/" },
@@ -94,6 +103,17 @@ const HeroView: React.FC = () => {
         ) : (
           <Card fluid>
             <Card.Content textAlign="center">Hero is DELETED</Card.Content>
+            <Card.Content textAlign="center">
+              <ButtonComponent
+                loading={loading}
+                isIcon
+                iconName="home"
+                buttonText="Back to Homepage"
+                buttonColor="blue"
+                isBasic
+                onButtonClick={(e, data) => visitHomepage(e, data)}
+              />
+            </Card.Content>
           </Card>
         )}
       </div>

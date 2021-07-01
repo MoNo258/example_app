@@ -1,19 +1,12 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import './index.css';
-// import App from './App';
 // import reportWebVitals from './reportWebVitals';
-
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-// import { Route, Switch } from "react-router-dom";
-// import "../scss/main.scss";
 import HeroView from "./Views/HeroView/HeroView";
 // import { createBrowserHistory } from "history";
-// import { Router, Route, Switch, Redirect } from "react-router-dom";
+// import { Router,  Redirect } from "react-router-dom";
 import Home from "./Views/Home/Home";
 import NotFound from "./Views/NotFound/NotFound";
 

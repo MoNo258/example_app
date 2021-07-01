@@ -22,7 +22,7 @@ export const ItemStyled = styled.div`
   & .item-description {
     text-overflow: ellipsis;
     overflow: hidden;
-    max-width: 300px;
+    width: 300px;
     height: 1.2em;
     white-space: nowrap;
   }
