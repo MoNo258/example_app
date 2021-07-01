@@ -49,7 +49,7 @@ const ListItem: React.FC<ListItemProps> = ({
     <React.Fragment>
       <List.Item onClick={showHero} value={id}>
         <ItemStyled>
-          <Image className="item-avatar" src={avatarUrl} size="mini" />
+          <Image className="item-avatar" src={avatarUrl} size="mini" circular />
           <Header className="item-fullName" as="h3">
             {fullName}
           </Header>

@@ -13,6 +13,9 @@ export type ButtonComponentProps = {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     data: ButtonProps
   ) => void;
+  disabled?: boolean;
+  buttonWideAndCentered?: boolean;
+  isSubmit?: boolean;
 };
 
 const ButtonComponent: React.FC<ButtonComponentProps> = ({
@@ -22,7 +25,10 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({
   isIcon,
   iconName,
   isBasic,
-  onButtonClick
+  onButtonClick,
+  disabled,
+  buttonWideAndCentered,
+  isSubmit
 }) => {
   return (
     <Button
@@ -31,7 +37,9 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({
       basic={isBasic}
       color={buttonColor}
       onClick={onButtonClick}
-      // onClick={param => onButtonClick(param)}
+      disabled={disabled}
+      style={buttonWideAndCentered ? { width: "100%", margin: "auto" } : {}}
+      type={isSubmit ? "submit" : "button"}
     >
       {isIcon ? <Icon name={iconName} size="small" /> : null} {buttonText}
     </Button>

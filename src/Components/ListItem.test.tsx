@@ -14,6 +14,7 @@ describe("ListItem", () => {
       id="ckq4zb7p600c50984ew55i0jg"
       avatarUrl="http://localhost:4000/assets/batman.png"
       type={HeroTypeExample}
+      showHero={jest.fn()}
     />
   );
 

@@ -20,6 +20,7 @@ export const HeroViewStyled = styled.div`
     align-items: center;
     & .ui.card > .image {
       background: none;
+      border-radius: 50% !important;
     }
     & .ui.card > .content,
     .ui.card > .extra {
@@ -67,19 +68,9 @@ const HeroView: React.FC = () => {
           <Card fluid>
             <Image
               className="heroView_image"
-              rounded
               centered
-              // size="mini"
-              // size="tiny"
-              // size="small"
               size="medium"
-              // size="large"
-              // size="big"
-              // size="huge"
-              // size="massive"
               src={heroInfo.avatar_url}
-              // wrapped
-              // ui={false}
             />
             <Card.Content>
               <Card.Header textAlign="center">{heroInfo.full_name}</Card.Header>
