@@ -65,7 +65,7 @@ const HeroView: React.FC = () => {
   React.useEffect(() => {
     getSingleHero(idParam.slice(1)).then(
       result => setHeroInfo(result),
-      error => history.push(`/not/Found`)
+      () => history.push(`/not/Found`) // I guess this is not exactly how this should be handled but couldn't think of anything else
     );
   }, [idParam, history]);
   React.useEffect(() => {

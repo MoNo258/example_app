@@ -5,7 +5,7 @@ import ButtonComponent from "../../Components/ButtonComponent";
 
 export const AddHeroStyled = styled.div``;
 export type AddHeroProps = {
-  loading: boolean;
+  loading?: boolean;
   openModal: boolean;
   onClose: () => void;
   onOpen: () => void;

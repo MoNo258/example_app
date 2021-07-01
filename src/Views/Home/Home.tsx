@@ -5,6 +5,7 @@ import { List } from "semantic-ui-react";
 import styled from "styled-components";
 import { addSingleHero, getHeroes, getTypes } from "../../Api";
 import ListItem from "../../Components/ListItem";
+import NoMoreItems from "../../Components/NoMoreItems";
 import SkeletonList from "../../Components/SkeletonList";
 import AddHero from "../../Views/AddHero/AddHero";
 
@@ -18,6 +19,9 @@ const Home: React.FC = () => {
   const [heroesArray, setHeroesArray] = React.useState<
     HeroesArrayModel["heroesArray"]
   >([]);
+  const [heroesTotal, setHerosTotal] = React.useState<number>(0);
+  const [isAll, setIsAll] = React.useState(false);
+  const [noHeroes, setNoHeroes] = React.useState(false);
   // eslint-disable-next-line
   const [newHero, setNewHero] = React.useState({
     avatar_url: "",
@@ -61,12 +65,22 @@ const Home: React.FC = () => {
   ) => setHeroId(data.value);
 
   React.useEffect(() => {
-    getHeroes().then(result => setHeroesArray(result.data));
+    getHeroes().then(
+      result => {
+        setHeroesArray(result.data);
+        setHerosTotal(result.total_count);
+        setLoading(false);
+      },
+      () => setLoading(false)
+    );
     getHeroTypes();
   }, []);
   React.useEffect(() => {
-    heroesArray.length !== 0 ? setLoading(false) : setLoading(true);
-  }, [heroesArray]);
+    heroesTotal === heroesArray.length && heroesTotal !== 0
+      ? setIsAll(true)
+      : setIsAll(false);
+    heroesArray.length === 0 ? setNoHeroes(true) : setNoHeroes(false);
+  }, [heroesTotal, heroesArray.length]);
   React.useEffect(() => {
     if (
       heroAvatar.length > 0 &&
@@ -79,9 +93,7 @@ const Home: React.FC = () => {
   }, [heroAvatar, heroDescription, heroFullName, heroId]);
 
   const getHeroTypes = () => {
-    getTypes().then(result => {
-      setHeroTypes(result);
-    });
+    getTypes().then(result => setHeroTypes(result));
   };
   const addHero = () => {
     setOpenModal(true);
@@ -111,7 +123,6 @@ const Home: React.FC = () => {
         openModal={openModal}
         onClose={() => setOpenModal(false)}
         onOpen={() => setOpenModal(true)}
-        loading={loading}
         addHero={addHero}
         onAvatarChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setHeroAvatar(e.target.value)
@@ -144,6 +155,10 @@ const Home: React.FC = () => {
               />
             );
           })}
+          {noHeroes && (
+            <NoMoreItems information="There are no heroes in town! Add new hero, please..." />
+          )}
+          {isAll && <NoMoreItems information="Yay! You have seen it all!" />}
         </List>
       )}
     </HomeStyled>
