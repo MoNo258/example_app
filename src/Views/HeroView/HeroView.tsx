@@ -63,8 +63,11 @@ const HeroView: React.FC = () => {
   };
 
   React.useEffect(() => {
-    getSingleHero(idParam.slice(1)).then(result => setHeroInfo(result));
-  }, [idParam]);
+    getSingleHero(idParam.slice(1)).then(
+      result => setHeroInfo(result),
+      error => history.push(`/not/Found`)
+    );
+  }, [idParam, history]);
   React.useEffect(() => {
     heroInfo.id.length !== 0 ? setLoading(false) : setLoading(true);
   }, [heroInfo]);

@@ -57,7 +57,7 @@ const Home: React.FC = () => {
   const onSelectChange = (
     e: React.SyntheticEvent<HTMLElement>,
     data
-    // data: DropdownProps
+    // data: DropdownProps // I have no idea what kind of type data could have and so I left default any.
   ) => setHeroId(data.value);
 
   React.useEffect(() => {
