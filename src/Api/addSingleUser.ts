@@ -1,8 +1,8 @@
-export async function addSingleHero(
-  avatar: HeroModel["avatar_url"],
-  description: HeroModel["description"],
-  name: HeroModel["full_name"],
-  typeId: HeroType["id"]
+export async function addSingleUser(
+  avatar: UserModel["avatar_url"],
+  description: UserModel["organizations_url"],
+  name: UserModel["login"],
+  typeId: UserType
 ) {
   let postData = {
     avatar_url: avatar,
@@ -11,7 +11,7 @@ export async function addSingleHero(
     type: typeId
   };
   try {
-    const response = await fetch(`http://localhost:4000/heroes`, {
+    const response = await fetch(`api to add user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -20,10 +20,10 @@ export async function addSingleHero(
     });
     if (response.status === 200) {
       return (await response.json()) as {
-        avatar_url: HeroModel["avatar_url"];
-        description: HeroModel["description"];
-        full_name: HeroModel["full_name"];
-        type: HeroType["id"];
+        avatar_url: UserModel["avatar_url"];
+        description: UserModel["organizations_url"];
+        full_name: UserModel["login"];
+        type: UserType;
       };
     } else {
       throw Error(`${response.status}: ${response.statusText}`);

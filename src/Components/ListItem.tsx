@@ -33,8 +33,8 @@ export type ListItemProps = {
   description: string;
   fullName: string;
   id: string;
-  type: HeroType;
-  showHero: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  type: UserType;
+  showUser: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 };
 
 const ListItem: React.FC<ListItemProps> = ({
@@ -43,17 +43,17 @@ const ListItem: React.FC<ListItemProps> = ({
   fullName,
   id,
   type,
-  showHero
+  showUser
 }) => {
   return (
     <React.Fragment>
-      <List.Item onClick={showHero} value={id}>
+      <List.Item onClick={showUser} value={id}>
         <ItemStyled>
           <Image className="item-avatar" src={avatarUrl} size="mini" circular />
           <Header className="item-fullName" as="h3">
             {fullName}
           </Header>
-          <p className="item-typeName">{type.name}</p>
+          <p className="item-typeName">{type}</p>
           <p className="item-description">{description}</p>
         </ItemStyled>
       </List.Item>

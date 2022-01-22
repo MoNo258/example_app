@@ -3,39 +3,39 @@ import { ButtonProps, Form, Image, Modal } from "semantic-ui-react";
 import styled from "styled-components";
 import ButtonComponent from "../../Components/ButtonComponent";
 
-export const AddHeroStyled = styled.div``;
-export type AddHeroProps = {
+export const AddUserStyled = styled.div``;
+export type AddUserProps = {
   loading?: boolean;
   openModal: boolean;
   onClose: () => void;
   onOpen: () => void;
-  addHero: (
+  addUser: (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     data: ButtonProps
   ) => void;
   onAvatarChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSelectChange: (
-    e: React.SyntheticEvent<HTMLElement, Event>,
-    data: {}
-  ) => void;
-  optionsForSelect: OptionsForSelect[];
+  // onSelectChange: (
+  //   e: React.SyntheticEvent<HTMLElement, Event>,
+  //   data: {}
+  // ) => void;
+  // optionsForSelect: OptionsForSelect[];
   onDescriptionChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  saveHero: () => void;
+  saveUser: () => void;
   isDisabled: boolean;
 };
-const AddHero: React.FC<AddHeroProps> = ({
+const AddUser: React.FC<AddUserProps> = ({
   loading,
   openModal,
   onClose,
   onOpen,
-  addHero,
+  addUser,
   onAvatarChange,
   onNameChange,
-  onSelectChange,
-  optionsForSelect,
+  // onSelectChange,
+  // optionsForSelect,
   onDescriptionChange,
-  saveHero,
+  saveUser,
   isDisabled
 }) => {
   return (
@@ -49,14 +49,14 @@ const AddHero: React.FC<AddHeroProps> = ({
           loading={loading}
           isIcon
           iconName="plus"
-          buttonText="Add hero"
+          buttonText="Add user"
           buttonColor="green"
-          onButtonClick={addHero}
+          onButtonClick={addUser}
         />
       }
       style={{ width: "40%" }}
     >
-      <Modal.Header>Add hero</Modal.Header>
+      <Modal.Header>Add user</Modal.Header>
       <Modal.Content>
         <Image
           size="small"
@@ -67,13 +67,13 @@ const AddHero: React.FC<AddHeroProps> = ({
           <Form>
             <Form.Input required label="Avatar URL" onChange={onAvatarChange} />
             <Form.Input required label="Full name" onChange={onNameChange} />
-            <Form.Select
+            {/* <Form.Select
               required
               label="Type"
               options={optionsForSelect}
               placeholder="Select type"
               onChange={onSelectChange}
-            />
+            /> */}
             <Form.TextArea
               required
               label="Description"
@@ -87,7 +87,7 @@ const AddHero: React.FC<AddHeroProps> = ({
           loading={loading}
           buttonText="Save"
           buttonColor="green"
-          onButtonClick={saveHero}
+          onButtonClick={saveUser}
           disabled={isDisabled ? true : false}
           buttonWideAndCentered
         />
@@ -96,4 +96,4 @@ const AddHero: React.FC<AddHeroProps> = ({
   );
 };
 
-export default AddHero;
+export default AddUser;

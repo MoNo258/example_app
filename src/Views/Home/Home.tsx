@@ -3,11 +3,11 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { List } from "semantic-ui-react";
 import styled from "styled-components";
-import { addSingleHero, getHeroes, getTypes } from "../../Api";
+import { addSingleUser, getUsers, getUsersOrganizations } from "../../Api";
 import ListItem from "../../Components/ListItem";
 import NoMoreItems from "../../Components/NoMoreItems";
 import SkeletonList from "../../Components/SkeletonList";
-import AddHero from "../../Views/AddHero/AddHero";
+import AddUser from "../../Views/AddUser/AddUser";
 
 export const HomeStyled = styled.div`
   margin: 2rem;
@@ -16,102 +16,107 @@ export const HomeStyled = styled.div`
 const Home: React.FC = () => {
   const history = useHistory();
   const [loading, setLoading] = React.useState(true);
-  const [heroesArray, setHeroesArray] = React.useState<
-    HeroesArrayModel["heroesArray"]
+  const [usersArray, setUsersArray] = React.useState<
+    UsersArrayModel["usersArray"]
   >([]);
-  const [heroesTotal, setHerosTotal] = React.useState<number>(0);
+  const [usersTotal, setUsersTotal] = React.useState<number>(0);
   const [isAll, setIsAll] = React.useState(false);
-  const [noHeroes, setNoHeroes] = React.useState(false);
+  const [noUsers, setNoUsers] = React.useState(false);
   // eslint-disable-next-line
-  const [newHero, setNewHero] = React.useState({
+  const [newUser, setNewUser] = React.useState({
     avatar_url: "",
     description: "",
-    full_name: "",
-    type: ""
+    full_name: ""
   });
-  const [heroTypes, setHeroTypes] = React.useState<HeroType[]>([]);
-  const [heroAvatar, setHeroAvatar] = React.useState<HeroModel["avatar_url"]>(
+  // eslint-disable-next-line
+  const [usersOrgs, setUsersOrgs] = React.useState<UsersOrgs[]>([]);
+  const [userAvatar, setUserAvatar] = React.useState<UserModel["avatar_url"]>(
     ""
   );
-  const [heroDescription, setHeroDescription] = React.useState<
-    HeroModel["description"]
+  const [userDescription, setUserDescription] = React.useState<
+    UserModel["organizations_url"]
   >("");
-  const [heroFullName, setHeroFullName] = React.useState<
-    HeroModel["full_name"]
-  >("");
-  const [heroId, setHeroId] = React.useState<HeroType["id"]>("");
+  const [userFullName, setUserFullName] = React.useState<UserModel["login"]>(
+    ""
+  );
+  const [userId, setUserId] = React.useState<UserType>("");
   const [openModal, setOpenModal] = React.useState(false);
   const [isDisabled, setIsDisabled] = React.useState(true);
-  const optionsForSelect: OptionsForSelect[] = [
-    {
-      key: "",
-      text: "",
-      value: ""
-    }
-  ];
-  heroTypes.map(hero => {
-    optionsForSelect.push({
-      key: hero.id,
-      text: hero.name,
-      value: hero.id
-    });
-    return optionsForSelect;
-  });
+  // const optionsForSelect: OptionsForSelect[] = [
+  //   {
+  //     key: "",
+  //     text: "",
+  //     value: ""
+  //   }
+  // ];
+  // usersOrgs.map(user => {
+  //   optionsForSelect.push({
+  //     key: user,
+  //     text: user,
+  //     value: user
+  //   });
+  //   return optionsForSelect;
+  // });
 
-  const onSelectChange = (
-    e: React.SyntheticEvent<HTMLElement>,
-    data
-    // data: DropdownProps // I have no idea what kind of type data could have and so I left default any.
-  ) => setHeroId(data.value);
+  // const onSelectChange = (
+  //   e: React.SyntheticEvent<HTMLElement>,
+  //   data
+  //   // data: DropdownProps // I have no idea what kind of type data could have and so I left default any.
+  // ) => setUserId(data.value);
 
   React.useEffect(() => {
-    getHeroes().then(
+    getUsers().then(
       result => {
-        setHeroesArray(result.data);
-        setHerosTotal(result.total_count);
+        setUsersArray(result);
+        setUsersTotal(result.length);
         setLoading(false);
       },
       () => setLoading(false)
     );
-    getHeroTypes();
+    // getUsersOrgs();
   }, []);
   React.useEffect(() => {
-    heroesTotal === heroesArray.length && heroesTotal !== 0
+    usersTotal === usersArray.length && usersTotal !== 0
       ? setIsAll(true)
       : setIsAll(false);
-    heroesArray.length === 0 ? setNoHeroes(true) : setNoHeroes(false);
-  }, [heroesTotal, heroesArray.length]);
+    usersArray.length === 0 ? setNoUsers(true) : setNoUsers(false);
+  }, [usersTotal, usersArray.length]);
   React.useEffect(() => {
     if (
-      heroAvatar.length > 0 &&
-      heroDescription.length > 0 &&
-      heroFullName.length > 0 &&
-      heroId.length > 0
+      userAvatar.length > 0 &&
+      userDescription.length > 0 &&
+      userFullName.length > 0 &&
+      userId.length > 0
     ) {
       setIsDisabled(false);
     }
-  }, [heroAvatar, heroDescription, heroFullName, heroId]);
+  }, [userAvatar, userDescription, userFullName, userId]);
 
-  const getHeroTypes = () => {
-    getTypes().then(result => setHeroTypes(result));
+  const getUsersOrgs = (login: string) => {
+    getUsersOrganizations(login).then(result => setUsersOrgs(result));
   };
-  const addHero = () => {
+  const addUser = () => {
     setOpenModal(true);
   };
-  const showHero = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    history.push(`/${e.currentTarget.getAttribute("data-value")}`);
+  const showUser = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    login: string
+  ) => {
+    getUsersOrgs(login);
+    history.push(`/${login}`);
+    // history.push(`/${e.currentTarget.getAttribute("data-value")}`);
   };
-  const saveHero = () => {
-    addSingleHero(
-      heroAvatar,
-      heroDescription,
-      heroFullName,
-      heroId
-    ).then(result => setNewHero(result));
-    setHeroAvatar("");
-    setHeroDescription("");
-    setHeroFullName("");
-    setHeroId("");
+  const saveUser = () => {
+    addSingleUser(
+      userAvatar,
+      userDescription,
+      userFullName,
+      userId
+    ).then(result => setNewUser(result));
+    setUserAvatar("");
+    setUserDescription("");
+    setUserFullName("");
+    setUserId("");
     setOpenModal(false);
   };
 
@@ -119,44 +124,44 @@ const Home: React.FC = () => {
 
   return (
     <HomeStyled className="home">
-      <AddHero
+      <AddUser
         openModal={openModal}
         onClose={() => setOpenModal(false)}
         onOpen={() => setOpenModal(true)}
-        addHero={addHero}
+        addUser={addUser}
         onAvatarChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setHeroAvatar(e.target.value)
+          setUserAvatar(e.target.value)
         }
         onNameChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setHeroFullName(e.target.value)
+          setUserFullName(e.target.value)
         }
-        onSelectChange={onSelectChange}
-        optionsForSelect={optionsForSelect}
+        // onSelectChange={onSelectChange}
+        // optionsForSelect={optionsForSelect}
         onDescriptionChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-          setHeroDescription(e.target.value)
+          setUserDescription(e.target.value)
         }
-        saveHero={saveHero}
+        saveUser={saveUser}
         isDisabled={isDisabled}
       />
       {loading ? (
         manySkeletons
       ) : (
         <List>
-          {heroesArray.map(hero => {
+          {usersArray.map((user: UserModel) => {
             return (
               <ListItem
-                key={hero.id}
-                avatarUrl={hero.avatar_url}
-                description={hero.description}
-                fullName={hero.full_name}
-                id={hero.id}
-                type={hero.type}
-                showHero={e => showHero(e)}
+                key={user.id}
+                avatarUrl={user.avatar_url}
+                description={user.node_id}
+                fullName={user.login}
+                id={user.id.toString()}
+                type={user.type}
+                showUser={e => showUser(e, user.login)}
               />
             );
           })}
-          {noHeroes && (
-            <NoMoreItems information="There are no heroes in town! Add new hero, please..." />
+          {noUsers && (
+            <NoMoreItems information="There are no users! Let's add someone..." />
           )}
           {isAll && <NoMoreItems information="Yay! You have seen it all!" />}
         </List>

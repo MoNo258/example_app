@@ -3,7 +3,7 @@ import React from "react";
 import ListItem from "./ListItem";
 
 describe("ListItem", () => {
-  const HeroTypeExample: HeroType = {
+  const UserTypeExample: UserType = {
     id: "ckq4zb7mu00an09848dfxhw4u",
     name: "Human"
   };
@@ -13,12 +13,12 @@ describe("ListItem", () => {
       description="Sed nec venenatis felis. Aenean efficitur et massa auctor auctor."
       id="ckq4zb7p600c50984ew55i0jg"
       avatarUrl="http://localhost:4000/assets/batman.png"
-      type={HeroTypeExample}
-      showHero={jest.fn()}
+      type={UserTypeExample}
+      showUser={jest.fn()}
     />
   );
 
-  test("renders with hero data", () => {
+  test("renders with user data", () => {
     render(<TestedComponent />);
     screen.debug();
     expect(screen.getByText(/Batman/i)).toBeInTheDocument();

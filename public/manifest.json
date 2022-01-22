@@ -1,6 +1,6 @@
 {
-  "short_name": "Netguru's heroes",
-  "name": "Netguru recruitment challenge with TypeScript",
+  "short_name": "GitHub's users",
+  "name": "GitHub example application with TypeScript",
   "icons": [
     {
       "src": "favicon.ico",

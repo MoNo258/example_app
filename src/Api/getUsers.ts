@@ -1,13 +1,13 @@
-export async function getSingleHero(id: string) {
+export async function getUsers() {
   try {
-    const response = await fetch(`http://localhost:4000/heroes/${id}`, {
+    const response = await fetch(`https://api.github.com/users`, {
       method: "GET",
       headers: {
         Accept: `application/json;odata=nometadata;`
       }
     });
     if (response.status === 200) {
-      return (await response.json()) as HeroModel;
+      return (await response.json()) as UserModel[];
     } else {
       throw Error(`${response.status}: ${response.statusText}`);
     }

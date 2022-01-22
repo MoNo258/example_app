@@ -1,4 +1,4 @@
-export async function getHeroesWithParams(
+export async function getUsersWithParams(
   first: string | number,
   skip: string | number
 ) {
@@ -14,7 +14,7 @@ export async function getHeroesWithParams(
     );
     if (response.status === 200) {
       return (await response.json()) as {
-        data: HeroesArrayModel["heroesArray"];
+        data: UsersArrayModel["usersArray"];
         total_count: number;
       };
     } else {

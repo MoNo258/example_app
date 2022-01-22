@@ -1,13 +1,13 @@
-export async function getTypes() {
+export async function getUsersOrganizations(login: string) {
   try {
-    const response = await fetch(`http://localhost:4000/types`, {
+    const response = await fetch(`https://api.github.com/users/${login}/orgs`, {
       method: "GET",
       headers: {
         Accept: `application/json;odata=nometadata;`
       }
     });
     if (response.status === 200) {
-      return (await response.json()) as HeroType[];
+      return (await response.json()) as UsersOrgs[];
     } else {
       throw Error(`${response.status}: ${response.statusText}`);
     }
