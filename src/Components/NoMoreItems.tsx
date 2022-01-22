@@ -24,13 +24,11 @@ export type NoMoreItemsProps = {
 
 const NoMoreItems: React.FC<NoMoreItemsProps> = ({ information }) => {
   return (
-    <React.Fragment>
-      <List.Item>
-        <NoMoreItemsStyled>
-          <p className="item-information">{information}</p>
-        </NoMoreItemsStyled>
-      </List.Item>
-    </React.Fragment>
+    <List.Item>
+      <NoMoreItemsStyled>
+        <p className="item-information">{information}</p>
+      </NoMoreItemsStyled>
+    </List.Item>
   );
 };
 

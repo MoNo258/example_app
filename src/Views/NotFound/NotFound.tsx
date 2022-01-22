@@ -32,7 +32,7 @@ const NotFound: React.FC = () => {
   return (
     <NotFoundStyled className="notFound">
       <Header as="h1" color="blue" className="notFound_header">
-        OOPS!
+        OOPS...
       </Header>
       <p className="notFound_desc">
         We can't find the page you're looking for.

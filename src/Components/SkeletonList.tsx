@@ -38,8 +38,6 @@ const SkeletonListStyled = styled.div`
   }
 `;
 
-const SkeletonList: React.FC = () => {
-  return <SkeletonListStyled />;
-};
+const SkeletonList: React.FC = () => <SkeletonListStyled />;
 
 export default SkeletonList;

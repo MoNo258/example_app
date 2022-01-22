@@ -5,7 +5,7 @@ import { SemanticICONS } from "semantic-ui-react/dist/commonjs/generic";
 export type ButtonComponentProps = {
   loading?: boolean;
   buttonText: string;
-  buttonColor?: "green" | "blue" | "red";
+  buttonColor?: "green" | "blue" | "red" | "grey";
   isIcon?: boolean;
   iconName?: SemanticICONS;
   isBasic?: boolean;

@@ -3,17 +3,13 @@ import React from "react";
 import ListItem from "./ListItem";
 
 describe("ListItem", () => {
-  const UserTypeExample: UserType = {
-    id: "ckq4zb7mu00an09848dfxhw4u",
-    name: "Human"
-  };
   const TestedComponent = () => (
     <ListItem
-      fullName="Batman"
+      fullName="User Batman"
       description="Sed nec venenatis felis. Aenean efficitur et massa auctor auctor."
       id="ckq4zb7p600c50984ew55i0jg"
       avatarUrl="http://localhost:4000/assets/batman.png"
-      type={UserTypeExample}
+      type="User"
       showUser={jest.fn()}
     />
   );
@@ -21,7 +17,7 @@ describe("ListItem", () => {
   test("renders with user data", () => {
     render(<TestedComponent />);
     screen.debug();
-    expect(screen.getByText(/Batman/i)).toBeInTheDocument();
+    expect(screen.getByText(/User Batman/i)).toBeInTheDocument();
     expect(
       screen.getByText(
         /Sed nec venenatis felis. Aenean efficitur et massa auctor auctor./i
