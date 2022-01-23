@@ -1,7 +1,7 @@
 type UserType = "User" | "Organization" | string;
 // type UserType = "User" | "Organization";
 
-interface UsersOrgs {
+interface IUsersOrgs {
   login: string;
   id: number;
   node_id: string;
@@ -27,6 +27,12 @@ interface UsersOrgs {
   // public_members_url: "https://api.github.com/orgs/toml-lang/public_members{/member}",
   // avatar_url: "https://avatars.githubusercontent.com/u/7966854?v=4",
   // description: "Tom's Obvious, Minimal Language (and friends)"
+}
+
+interface IUsersOrgsSlice {
+  items: IUsersOrgs[];
+  loading: boolean;
+  error?: string;
 }
 
 interface UserModel {

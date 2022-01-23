@@ -29,7 +29,7 @@ const Home: React.FC = () => {
     full_name: ""
   });
   // eslint-disable-next-line
-  const [usersOrgs, setUsersOrgs] = React.useState<UsersOrgs[]>([]);
+  const [usersOrgs, setUsersOrgs] = React.useState<IUsersOrgs[]>([]);
   const [userAvatar, setUserAvatar] = React.useState<UserModel["avatar_url"]>(
     ""
   );

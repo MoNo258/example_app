@@ -4,6 +4,7 @@ import { Breadcrumb, ButtonProps, Card, Image } from "semantic-ui-react";
 import styled from "styled-components";
 import { deleteSingleUser, getSingleUser } from "../../Api";
 import ButtonComponent from "../../Components/ButtonComponent";
+import { UsersOrganizations } from "../../redux/UsersOrganizations";
 
 export const UserViewStyled = styled.div`
   padding: 2rem;
@@ -126,6 +127,7 @@ const UserView: React.FC = () => {
               <a href={userInfo.blog} target="_blank" rel="noreferrer">
                 {userInfo.blog}
               </a>
+              <UsersOrganizations />
             </Card.Content>
             <Card.Content textAlign="center">
               <ButtonComponent

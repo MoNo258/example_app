@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
+// import {ReduxProvider} from '@redux'
+import { ReduxProvider } from "./redux";
 // import { createBrowserHistory } from "history";
 // import { Router,  Redirect } from "react-router-dom";
 import Home from "./Views/Home/Home";
@@ -23,11 +25,13 @@ const App = () => {
       <ThemeProvider theme={{ fontFamily: "sans-serif" }}>
         <GlobalStyle />
         <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/:login" component={UserView} />
-            <Route component={NotFound} />
-          </Switch>
+          <ReduxProvider>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/:login" component={UserView} />
+              <Route component={NotFound} />
+            </Switch>
+          </ReduxProvider>
         </BrowserRouter>
       </ThemeProvider>
     </div>

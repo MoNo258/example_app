@@ -7,7 +7,7 @@ export async function getUsersOrganizations(login: string) {
       }
     });
     if (response.status === 200) {
-      return (await response.json()) as UsersOrgs[];
+      return (await response.json()) as IUsersOrgs[];
     } else {
       throw Error(`${response.status}: ${response.statusText}`);
     }
