@@ -16,11 +16,13 @@ export const UserViewStyled = styled.div`
   & .userView_card {
     width: 60%;
     margin: auto;
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     & .ui.card > .image {
+      padding-top: 1rem;
       background: none;
       border-radius: 50% !important;
     }
@@ -34,7 +36,7 @@ export const UserViewStyled = styled.div`
 const UserView: React.FC = () => {
   const history = useHistory();
   const [loading, setLoading] = React.useState(true);
-  const [userInfo, setUserInfo] = React.useState<UserModel>({
+  const [userInfo, setUserInfo] = React.useState<IUser>({
     login: "",
     id: 0,
     node_id: "",
@@ -127,7 +129,7 @@ const UserView: React.FC = () => {
               <a href={userInfo.blog} target="_blank" rel="noreferrer">
                 {userInfo.blog}
               </a>
-              <UsersOrganizations />
+              <UsersOrganizations user={idParam.slice(1)} />
             </Card.Content>
             <Card.Content textAlign="center">
               <ButtonComponent

@@ -4,10 +4,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-// import {ReduxProvider} from '@redux'
 import { ReduxProvider } from "./redux";
-// import { createBrowserHistory } from "history";
-// import { Router,  Redirect } from "react-router-dom";
 import Home from "./Views/Home/Home";
 import NotFound from "./Views/NotFound/NotFound";
 import UserView from "./Views/UserView/UserView";

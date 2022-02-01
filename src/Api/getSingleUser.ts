@@ -7,7 +7,7 @@ export async function getSingleUser(username: string) {
       }
     });
     if (response.status === 200) {
-      return (await response.json()) as UserModel;
+      return (await response.json()) as IUser;
     } else {
       throw Error(`${response.status}: ${response.statusText}`);
     }

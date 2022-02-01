@@ -8,5 +8,6 @@ export type {
     ReduxDispatch,
     ThunkResult
 } from "./store";
+export * from "./UsersList";
 export * from "./UsersOrganizations";
 

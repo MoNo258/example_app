@@ -14,19 +14,6 @@ interface IUsersOrgs {
   public_members_url: string;
   avatar_url: string;
   description: string;
-
-  //   login: "toml-lang",
-  // id: 7966854,
-  // node_id: "MDEyOk9yZ2FuaXphdGlvbjc5NjY4NTQ=",
-  // url: "https://api.github.com/orgs/toml-lang",
-  // repos_url: "https://api.github.com/orgs/toml-lang/repos",
-  // events_url: "https://api.github.com/orgs/toml-lang/events",
-  // hooks_url: "https://api.github.com/orgs/toml-lang/hooks",
-  // issues_url: "https://api.github.com/orgs/toml-lang/issues",
-  // members_url: "https://api.github.com/orgs/toml-lang/members{/member}",
-  // public_members_url: "https://api.github.com/orgs/toml-lang/public_members{/member}",
-  // avatar_url: "https://avatars.githubusercontent.com/u/7966854?v=4",
-  // description: "Tom's Obvious, Minimal Language (and friends)"
 }
 
 interface IUsersOrgsSlice {
@@ -35,7 +22,7 @@ interface IUsersOrgsSlice {
   error?: string;
 }
 
-interface UserModel {
+interface IUser {
   login: string;
   id: number;
   node_id: string;
@@ -69,6 +56,8 @@ interface UserModel {
   created_at: string;
   updated_at: string;
 }
-interface UsersArrayModel {
-  usersArray: UserModel[];
+interface IUsersSlice {
+  usersArray: IUser[];
+  loading: boolean;
+  error?: string;
 }

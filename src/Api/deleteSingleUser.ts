@@ -8,10 +8,10 @@ export async function deleteSingleUser(id: string) {
     });
     if (response.status === 200) {
       return (await response.json()) as {
-        avatar_url: UserModel["avatar_url"];
-        description: UserModel["organizations_url"];
-        full_name: UserModel["login"];
-        id: UserModel["id"];
+        avatar_url: IUser["avatar_url"];
+        description: IUser["organizations_url"];
+        full_name: IUser["login"];
+        id: IUser["id"];
       };
     } else {
       throw Error(`${response.status}: ${response.statusText}`);

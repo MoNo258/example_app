@@ -14,7 +14,7 @@ export async function getUsersWithParams(
     );
     if (response.status === 200) {
       return (await response.json()) as {
-        data: UsersArrayModel["usersArray"];
+        data: IUsersSlice["usersArray"];
         total_count: number;
       };
     } else {
