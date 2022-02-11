@@ -1,17 +1,11 @@
-export async function getUsersWithParams(
-  first: string | number,
-  skip: string | number
-) {
+export async function getUsersWithParams(page: number) {
   try {
-    const response = await fetch(
-      `http://localhost:4000/heroes?first=${first}&skip=${skip}`,
-      {
-        method: "GET",
-        headers: {
-          Accept: `application/json;odata=nometadata;`
-        }
-      }
-    );
+    const response = await fetch(`https://api.github.com/users?page=${page}`, {
+      method: "GET",
+      headers: {
+        Accept: `application/json;odata=nometadata;`,
+      },
+    });
     if (response.status === 200) {
       return (await response.json()) as {
         data: IUsersSlice["usersArray"];
