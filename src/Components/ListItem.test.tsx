@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import React from "react";
 import ListItem from "./ListItem";
 
 describe("ListItem", () => {
@@ -16,7 +15,7 @@ describe("ListItem", () => {
 
   test("renders with user data", () => {
     render(<TestedComponent />);
-    screen.debug();
+    // screen.debug();
     expect(screen.getByText(/User Batman/i)).toBeInTheDocument();
     expect(
       screen.getByText(

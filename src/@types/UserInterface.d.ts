@@ -1,5 +1,4 @@
-type UserType = "User" | "Organization" | string;
-// type UserType = "User" | "Organization";
+type UserType = "User" | "Organization";
 
 interface IUsersOrgs {
   login: string;

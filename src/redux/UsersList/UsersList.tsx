@@ -3,40 +3,19 @@ import { useHistory } from "react-router-dom";
 import { List } from "semantic-ui-react";
 import ListItem from "../../Components/ListItem";
 import NoMoreItems from "../../Components/NoMoreItems";
-import { useGlobalDispatch, useGlobalState } from "../../helpers";
+import { useGlobalState } from "../../helpers";
 
 type UsersListProps = {
   propName?: string;
 };
 const UsersList: React.FC<UsersListProps> = () => {
-  const dispatch = useGlobalDispatch();
-  const usersArray = useGlobalState(state => state.usersList.usersArray);
-  const isLoading = useGlobalState(state => state.usersList.loading);
-
+  const usersArray = useGlobalState((state) => state.usersList.usersArray);
+  const isLoading = useGlobalState((state) => state.usersList.loading);
   const history = useHistory();
-
   const [usersTotal, setUsersTotal] = React.useState<number>(0);
   const [isAll, setIsAll] = React.useState(false);
   const [noUsers, setNoUsers] = React.useState(false);
 
-  // eslint-disable-next-line
-  const [usersOrgs, setUsersOrgs] = React.useState<IUsersOrgs[]>([]);
-
-  //   React.useEffect(() => {
-  //     dispatch(UsersListAction.fetchUsers());
-  //   }, []);
-
-  //   React.useEffect(() => {
-  //     getUsers().then(
-  //       result => {
-  //         setUsersArray(result);
-  //         setUsersTotal(result.length);
-  //         setLoading(false);
-  //       },
-  //       () => setLoading(false)
-  //     );
-  //     // getUsersOrgs();
-  //   }, []);
   React.useEffect(() => {
     usersTotal === usersArray?.length && usersTotal !== 0
       ? setIsAll(true)
@@ -46,18 +25,11 @@ const UsersList: React.FC<UsersListProps> = () => {
       : setNoUsers(false);
   }, [usersTotal, usersArray]);
 
-  //   const getUsersOrgs = (login: string) => {
-  //     getUsersOrganizations(login).then(result => setUsersOrgs(result));
-  //   };
-
   const showUser = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     login: string
   ) => {
-    // getUsersOrgs(login);
-
     history.push(`/${login}`);
-    // history.push(`/${e.currentTarget.getAttribute("data-value")}`);
   };
 
   return (
@@ -75,7 +47,7 @@ const UsersList: React.FC<UsersListProps> = () => {
               fullName={user.login}
               id={user.id.toString()}
               type={user.type}
-              showUser={e => showUser(e, user.login)}
+              showUser={(e) => showUser(e, user.login)}
             />
           );
         })
